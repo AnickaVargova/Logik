@@ -1,24 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Squares } from "./Squares";
-import { options } from "./options";
-
-const createSecretOptions = (options) => {
-  const resultArr = [];
-  const getRandomIndex = () => Math.round(Math.random() * (options.length - 1));
-  while (resultArr.length < 4) {
-    const randomColor = options[getRandomIndex()];
-    if (!resultArr.includes(randomColor)) {
-      resultArr.push(randomColor);
-    }
-  }
-  return resultArr;
-};
+import { GameContext } from "../App";
 
 export const SecretLine = () => {
+  const secretOptions = useContext(GameContext).secretOptions;
+  
   return (
     <View style={styles.secretLine}>
-      <Squares dropdown={false} backgroundsArr={createSecretOptions(options)} />
+      <Squares dropdown={false} backgroundsArr={secretOptions} />
     </View>
   );
 };
@@ -26,6 +16,7 @@ export const SecretLine = () => {
 const styles = StyleSheet.create({
   secretLine: {
     marginBottom: 30,
-    height: 40
+    borderColor: "blue",
+    borderWidth: 1
   }
 });

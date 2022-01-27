@@ -42,17 +42,17 @@ const styles = StyleSheet.create({
   dropdown: {
     display: "flex",
     flexDirection: "column",
-    width: 30,
-    margin: 10
+    width: 24,
+    margin: 5
   },
   menuButton: {
-    width: 26,
-    height: 26,
+    width: 20,
+    height: 20,
     borderColor: "black",
     borderWidth: 2
   },
   option: {
-    width: 26,
-    height: 26
+    width: 20,
+    height: 20
   }
 });

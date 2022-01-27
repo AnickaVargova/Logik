@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Square } from "./Square";
 
 export const Squares = ({ dropdown, backgroundsArr }) => {
+
   const squareLine = Array.from(backgroundsArr).map((background, index) => (
     <Square
       key={index}
@@ -15,7 +16,6 @@ export const Squares = ({ dropdown, backgroundsArr }) => {
 
 const styles = StyleSheet.create({
   squareLine: {
-    margin: 10,
     display: "flex",
     flexDirection: "row"
   }

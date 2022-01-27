@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Line } from "./Line";
-import { SecretLine } from "./SecretLine";
+import { Header } from "./Header";
 import { options } from "./options";
+
 
 export const Screen = () => {
   return (
     <View style={styles.sections}>
-      <SecretLine />
+      <Header />
       <Line dropdown={true} backgroundsArr={[undefined,undefined,undefined,undefined]}/>
     </View>
   );
