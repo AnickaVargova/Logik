@@ -1,37 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { Screen } from "./components/Screen";
 import { options } from "./components/options";
-
-const createSecretOptions = (options) => {
-  const resultArr = [];
-  const getRandomIndex = () => Math.round(Math.random() * (options.length - 1));
-  while (resultArr.length < 4) {
-    const randomColor = options[getRandomIndex()];
-    if (!resultArr.includes(randomColor)) {
-      resultArr.push(randomColor);
-    }
-  }
-  return resultArr;
-};
-
-const gameData = {
-  secretOptions: createSecretOptions(options),
-  evaluateGuess: (selectedOptions) =>
-    selectedOptions.reduce(
-      (count, current) => (this.secretOptions.includes(current) ? ++count : count),
-      0
-    ),
-  
-  enterGuess: (bool) => bool,
-};
+import { createSecretOptions} from "./helpers";
 
 export const GameContext = React.createContext();
 
 export default function App() {
+
+  const [gameData, setGameData] = useState({
+    secretOptions: createSecretOptions(options),
+    history: [],
+    current: ['','','',''],
+    submitted: false
+  });
+
   return (
-    <GameContext.Provider value={gameData}>
+    <GameContext.Provider value={{gameData, setGameData}}>
       <View style={styles.container}>
         <Screen />
       </View>
@@ -45,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 30,
+    padding: 20,
     paddingTop: 100
   }
 });

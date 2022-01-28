@@ -9,9 +9,6 @@ export const Header = () => {
   return (
     <View style={styles.header}>
       <SecretLine />
-      <TouchableOpacity style={styles.button}>
-        <Text>Evaluate</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -20,19 +17,8 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
+    width: '100%',
+    justifyContent: 'space-between'
   },
-  button: {
-    width: 70,
-    height: 40,
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: "lightgreen",
-    marginLeft: 20,
-    marginTop: 0,
-    fontWeight: 'bold',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+  
 });

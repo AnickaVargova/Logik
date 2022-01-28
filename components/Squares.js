@@ -1,14 +1,16 @@
-import React, {useContext} from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Square } from "./Square";
 
-export const Squares = ({ dropdown, backgroundsArr }) => {
+
+export const Squares = ({ dropdown, backgroundsArr, setCurrentLine }) => {
 
   const squareLine = Array.from(backgroundsArr).map((background, index) => (
     <Square
       key={index}
       withDropdown={dropdown}
       defaultBackground={background}
+      index={index}
     />
   ));
   return <View style={styles.squareLine}>{squareLine}</View>;

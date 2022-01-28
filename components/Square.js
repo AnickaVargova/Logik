@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { options } from "./options";
+import { GameContext } from "../App";
 
-const Dropdown = ({ setChosen, setVisible }) => {
+const Dropdown = ({ setChosen, setVisible, squareIndex }) => {
+const context = useContext(GameContext);
+const setGameData = context.setGameData;
+
+const selectColor = (color, squareIndex) => {
+    setGameData((p) => {
+        const newLine = [...p.current];
+        newLine[squareIndex] = color;
+        return {...p, current: newLine};
+    })
+}
+
   return (
     <View>
       {Array.from(options).map((item, index) => (
@@ -10,6 +22,7 @@ const Dropdown = ({ setChosen, setVisible }) => {
           style={{ ...styles.option, backgroundColor: item }}
           key={index}
           onPress={() => {
+            selectColor(item, squareIndex);
             setChosen(item);
             setVisible(false);
           }}
@@ -19,7 +32,12 @@ const Dropdown = ({ setChosen, setVisible }) => {
   );
 };
 
-export const Square = ({defaultBackground, withDropdown}) => {
+export const Square = ({
+  defaultBackground,
+  withDropdown,
+  index,
+}) => {
+  const context = useContext(GameContext);
   const [visible, setVisible] = useState(false);
   const [chosen, setChosen] = useState("");
 
@@ -30,10 +48,19 @@ export const Square = ({defaultBackground, withDropdown}) => {
   return (
     <View style={styles.dropdown}>
       <TouchableOpacity
-        style={{ ...styles.menuButton, backgroundColor: defaultBackground ? defaultBackground : chosen }}
+        style={{
+          ...styles.menuButton,
+          backgroundColor: defaultBackground ? defaultBackground : chosen
+        }}
         onPress={toggleDropdown}
       />
-      {withDropdown && visible && <Dropdown setChosen={setChosen} setVisible={setVisible}/>}
+      {withDropdown && visible && (
+        <Dropdown
+          setChosen={setChosen}
+          setVisible={setVisible}
+          squareIndex={index}
+        />
+      )}
     </View>
   );
 };
