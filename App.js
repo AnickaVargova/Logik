@@ -1,21 +1,13 @@
 import React, {useState} from "react";
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { Screen } from "./components/Screen";
-import { options } from "./components/options";
-import { createSecretOptions} from "./helpers";
+import { getDefaultData } from "./components/options";
 
 export const GameContext = React.createContext();
 
 export default function App() {
 
-  const [gameData, setGameData] = useState({
-    secretOptions: createSecretOptions(options),
-    history: [],
-    current: ['','','',''],
-    submitted: 1,
-    gameOver: false
-  });
+  const [gameData, setGameData] = useState(getDefaultData());
 
   return (
     <GameContext.Provider value={{gameData, setGameData}}>

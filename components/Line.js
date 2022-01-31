@@ -4,6 +4,7 @@ import { Squares } from "./Squares";
 import { Evaluation } from "./Evaluation";
 import { getCorrectColorsCount, getCorrectNumbersCount, areColorsUnique } from "../helpers";
 import { GameContext } from "../App";
+import { Button } from './Button';
 
 export const Line = ({location, backgroundsArr, index }) => {
   const context = useContext(GameContext);
@@ -48,18 +49,12 @@ export const Line = ({location, backgroundsArr, index }) => {
     setGameData((p) => ({ ...p, history: [...p.history, { colors: current }], current: ['','','',''], submitted: ++p.submitted }));
   };
 
-  
-
-//   useEffect(() => {
-//     setGameData((p) => ({ ...p, history: [...p.history, { colors: current }], current: emptyCurrent}));
-//   }, [submitted]);
+  console.log(current);
 
   return (
     <View style={styles.line}>
       <Squares location={location} backgroundsArr={current} />
-        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text>Done</Text>
-        </TouchableOpacity>
+        <Button text={'Done'} onPress={handleSubmit} color={'lightgreen'}/>
     </View>
   );
 };
@@ -79,7 +74,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     padding: 5,
-    backgroundColor: "lightgreen",
     marginLeft: 20,
     marginTop: 0,
     fontWeight: "bold",

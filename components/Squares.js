@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Square } from "./Square";
-
+import { GameContext } from "../App";
 
 export const Squares = ({ location, backgroundsArr}) => {
 
+  const context = useContext(GameContext);
+  const current = context.gameData.current;
   const squareLine = Array.from(backgroundsArr).map((background, index) => (
     <Square
-      key={index}
+      key={Math.random() + current[index].length}
       location={location}
       defaultBackground={background}
       index={index}

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Line } from "./Line";
 import { Header } from "./Header";
 import { options } from "./options";
@@ -9,6 +9,7 @@ import { History } from "./History";
 export const Screen = () => {
   const context = useContext(GameContext);
   const current = context.gameData.current;
+  const setGameData = context.setGameData;
   const history = context.gameData.history;
   const submitted = context.gameData.submitted;
   const gameOver = context.gameData.gameOver;
@@ -17,19 +18,27 @@ export const Screen = () => {
     return <History />;
   };
 
+  const closeDropdowns = () => {
+    setGameData((p) => ({ ...p, dropdowns: p.dropdowns.map((item) => false) }));
+  };
+
   return (
-    <View style={styles.sections}>
-      <Header />
-      {renderHistory()}
-      {!gameOver && <Line location={'current'} backgroundsArr={current} key={submitted} />}
-      {gameOver && (
-        <View style={styles.messageContainer}>
-          <Text style={styles.text}>
-            Your guess is correct. Congratulations!!!
-          </Text>
-        </View>
-      )}
-    </View>
+    <TouchableWithoutFeedback onPress={closeDropdowns}>
+      <View style={styles.sections}>
+        <Header />
+        {renderHistory()}
+        {!gameOver && (
+          <Line location={"current"} backgroundsArr={current} key={submitted} />
+        )}
+        {gameOver && (
+          <View style={styles.messageContainer}>
+            <Text style={styles.text}>
+              Your guess is correct. Congratulations!!!
+            </Text>
+          </View>
+        )}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
