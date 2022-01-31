@@ -1,17 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import React, { useContext } from "react";
+import { View, StyleSheet, Alert } from "react-native";
 import { Squares } from "./Squares";
-import { Evaluation } from "./Evaluation";
-import { getCorrectColorsCount, getCorrectNumbersCount, areColorsUnique } from "../helpers";
+import {  areColorsUnique } from "../helpers";
 import { GameContext } from "../App";
 import { Button } from './Button';
 
-export const Line = ({location, backgroundsArr, index }) => {
+export const Line = ({location }) => {
   const context = useContext(GameContext);
   const setGameData = context.setGameData;
   const current = context.gameData.current;
-  const submitted = context.gameData.submitted;
-  const [currentLine, setCurrentLine] = useState(backgroundsArr);
 
   const showNotComplete = () =>
     Alert.alert(

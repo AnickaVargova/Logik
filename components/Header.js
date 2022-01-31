@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { SecretLine } from "./SecretLine";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { GameContext } from "../App";
 import { Button } from "./Button";
-import { getDefaultData } from "./options";
+import { getDefaultData } from "../data";
 
 export const Header = () => {
   const context = useContext(GameContext);

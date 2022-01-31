@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { options } from "./options";
+import { options } from "../data";
 import { GameContext } from "../App";
 
 const Dropdown = ({ setVisible, squareIndex }) => {

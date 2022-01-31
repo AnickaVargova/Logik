@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Screen } from "./components/Screen";
-import { getDefaultData } from "./components/options";
+import { getDefaultData } from "./data";
 
 export const GameContext = React.createContext();
 

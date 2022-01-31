@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Line } from "./Line";
 import { Header } from "./Header";
-import { options } from "./options";
 import { GameContext } from "../App";
 import { History } from "./History";
 
