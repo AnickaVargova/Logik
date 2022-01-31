@@ -12,15 +12,20 @@ export const Screen = () => {
   const history = context.gameData.history;
   const submitted = context.gameData.submitted;
   const renderHistory = () => {
-      if(!history.length) return;
-      return <History/>
-  }
+    if (!history.length) return;
+    return <History />;
+  };
 
   return (
     <View style={styles.sections}>
       <Header />
       {renderHistory()}
       <Line dropdown={true} backgroundsArr={current} key={submitted} />
+      <View style={styles.messageContainer}>
+        <Text style={styles.text}>
+          Your guess is correct. Congratulations!!!
+        </Text>
+      </View>
     </View>
   );
 };
@@ -33,5 +38,12 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flex: 1,
     width: "100%"
+  },
+  messageContainer: {
+    marginTop: 20
+  },
+  text: {
+    color: "mediumseagreen",
+    fontSize: 20
   }
 });

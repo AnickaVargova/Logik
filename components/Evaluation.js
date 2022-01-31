@@ -3,16 +3,16 @@ import { View, Text, StyleSheet } from "react-native";
 import { GameContext } from "../App";
 import { getEvaluation } from "../helpers";
 
-export const Evaluation = () => {
+export const Evaluation = ({lineIndex}) => {
   const context = useContext(GameContext);
   const submitted = context.gameData.submitted;
   const secret = context.gameData.secretOptions;
   const history = context.gameData.history;
-  const last = history.length ? history[history.length - 1].colors : ['', '', '', '']; 
+  const lineColors = history.length ? history[lineIndex].colors : ['', '', '', '']; 
   
-  const [evalArray, setEvalArray] = useState(getEvaluation(4, last ,secret));
+  const [evalArray, setEvalArray] = useState(getEvaluation(4, lineColors ,secret));
   
-  useEffect(() => {setEvalArray(getEvaluation(4,last,secret))}, [submitted]);
+  useEffect(() => {setEvalArray(getEvaluation(4, lineColors ,secret))}, [submitted]);
 
   return (
 

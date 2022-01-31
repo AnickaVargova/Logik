@@ -5,7 +5,7 @@ import { Evaluation } from "./Evaluation";
 import { getCorrectColorsCount, getCorrectNumbersCount } from "../helpers";
 import { GameContext } from "../App";
 
-export const Line = ({ dropdown, backgroundsArr }) => {
+export const Line = ({ dropdown, backgroundsArr, index }) => {
   const context = useContext(GameContext);
   const setGameData = context.setGameData;
   const current = context.gameData.current;
@@ -43,12 +43,9 @@ export const Line = ({ dropdown, backgroundsArr }) => {
   return (
     <View style={styles.line}>
       <Squares dropdown={dropdown} backgroundsArr={current} />
-      {/* {!submitted && ( */}
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text>Done</Text>
         </TouchableOpacity>
-      {/* )} */}
-      <Evaluation key={submitted}/>
     </View>
   );
 };
@@ -58,7 +55,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "flex-start"
   },
   button: {
