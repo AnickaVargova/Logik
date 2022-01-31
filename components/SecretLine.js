@@ -9,7 +9,7 @@ const secretOptions = context.gameData.secretOptions;
   
   return (
     <View style={styles.secretLine}>
-      <Squares dropdown={false} backgroundsArr={secretOptions} />
+      <Squares location={'header'} backgroundsArr={secretOptions} />
     </View>
   );
 };

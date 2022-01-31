@@ -5,7 +5,7 @@ import { Evaluation } from "./Evaluation";
 import { getCorrectColorsCount, getCorrectNumbersCount, areColorsUnique } from "../helpers";
 import { GameContext } from "../App";
 
-export const Line = ({ dropdown, backgroundsArr, index }) => {
+export const Line = ({location, backgroundsArr, index }) => {
   const context = useContext(GameContext);
   const setGameData = context.setGameData;
   const current = context.gameData.current;
@@ -56,7 +56,7 @@ export const Line = ({ dropdown, backgroundsArr, index }) => {
 
   return (
     <View style={styles.line}>
-      <Squares dropdown={dropdown} backgroundsArr={current} />
+      <Squares location={location} backgroundsArr={current} />
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text>Done</Text>
         </TouchableOpacity>

@@ -11,7 +11,7 @@ export const History = () => {
 
   const historyMap = history.map((item, index) => (
     <View key={index} index={index} style={styles.historyLine}>
-      <Squares dropdown={false} backgroundsArr={item.colors} />
+      <Squares location={'history'} backgroundsArr={item.colors} />
       <Evaluation lineIndex={index} key={submitted} />
     </View>
   ));

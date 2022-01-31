@@ -46,4 +46,6 @@ export const areColorsUnique = (colors) => {
           return false;
       }
   }
+  return true;
 };
+

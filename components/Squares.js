@@ -3,12 +3,12 @@ import { View, Text, StyleSheet } from "react-native";
 import { Square } from "./Square";
 
 
-export const Squares = ({ dropdown, backgroundsArr}) => {
+export const Squares = ({ location, backgroundsArr}) => {
 
   const squareLine = Array.from(backgroundsArr).map((background, index) => (
     <Square
       key={index}
-      withDropdown={dropdown}
+      location={location}
       defaultBackground={background}
       index={index}
     />

@@ -21,7 +21,7 @@ export const Screen = () => {
     <View style={styles.sections}>
       <Header />
       {renderHistory()}
-      {!gameOver && <Line dropdown={true} backgroundsArr={current} key={submitted} />}
+      {!gameOver && <Line location={'current'} backgroundsArr={current} key={submitted} />}
       {gameOver && (
         <View style={styles.messageContainer}>
           <Text style={styles.text}>
