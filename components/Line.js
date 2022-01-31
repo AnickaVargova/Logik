@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Squares } from "./Squares";
 import { Evaluation } from "./Evaluation";
-import { getCorrectColorsCount, getCorrectNumbersCount } from "../helpers";
+import { getCorrectColorsCount, getCorrectNumbersCount, areColorsUnique } from "../helpers";
 import { GameContext } from "../App";
 
 export const Line = ({ dropdown, backgroundsArr, index }) => {
@@ -12,7 +12,7 @@ export const Line = ({ dropdown, backgroundsArr, index }) => {
   const submitted = context.gameData.submitted;
   const [currentLine, setCurrentLine] = useState(backgroundsArr);
 
-  const showAlert = () =>
+  const showNotComplete = () =>
     Alert.alert(
       "All squares must be filled.",
       "Please select colours for remaining squares.",
@@ -23,12 +23,26 @@ export const Line = ({ dropdown, backgroundsArr, index }) => {
       ]
     );
 
-
+ const showNoRepeat = () => 
+ Alert.alert(
+    "Some colors are used more times.",
+    "Please change your colors.",
+    [
+      {
+        text: "OK"
+      }
+    ]
+  );
 
   const handleSubmit = () => {
     if (current.some((el) => el === "")) {
-      showAlert();
+      showNotComplete();
       return;
+    }
+
+    if (!areColorsUnique(current)) {
+        showNoRepeat();
+        return;
     }
 
     setGameData((p) => ({ ...p, history: [...p.history, { colors: current }], current: ['','','',''], submitted: ++p.submitted }));

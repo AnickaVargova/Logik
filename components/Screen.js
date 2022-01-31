@@ -11,6 +11,7 @@ export const Screen = () => {
   const current = context.gameData.current;
   const history = context.gameData.history;
   const submitted = context.gameData.submitted;
+  const gameOver = context.gameData.gameOver;
   const renderHistory = () => {
     if (!history.length) return;
     return <History />;
@@ -20,12 +21,14 @@ export const Screen = () => {
     <View style={styles.sections}>
       <Header />
       {renderHistory()}
-      <Line dropdown={true} backgroundsArr={current} key={submitted} />
-      <View style={styles.messageContainer}>
-        <Text style={styles.text}>
-          Your guess is correct. Congratulations!!!
-        </Text>
-      </View>
+      {!gameOver && <Line dropdown={true} backgroundsArr={current} key={submitted} />}
+      {gameOver && (
+        <View style={styles.messageContainer}>
+          <Text style={styles.text}>
+            Your guess is correct. Congratulations!!!
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

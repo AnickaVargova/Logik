@@ -13,7 +13,8 @@ export default function App() {
     secretOptions: createSecretOptions(options),
     history: [],
     current: ['','','',''],
-    submitted: 1
+    submitted: 1,
+    gameOver: false
   });
 
   return (

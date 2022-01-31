@@ -5,14 +5,16 @@ import { getEvaluation } from "../helpers";
 
 export const Evaluation = ({lineIndex}) => {
   const context = useContext(GameContext);
+  const gameData = context.gameData;
   const submitted = context.gameData.submitted;
+  const setGameData = context.setGameData;
   const secret = context.gameData.secretOptions;
   const history = context.gameData.history;
   const lineColors = history.length ? history[lineIndex].colors : ['', '', '', '']; 
   
-  const [evalArray, setEvalArray] = useState(getEvaluation(4, lineColors ,secret));
+  const [evalArray, setEvalArray] = useState(getEvaluation(4, lineColors ,secret).evalArray);
   
-  useEffect(() => {setEvalArray(getEvaluation(4, lineColors ,secret))}, [submitted]);
+  useEffect(() => {setEvalArray(getEvaluation(4, lineColors ,secret).evalArray); setGameData({...gameData, gameOver: getEvaluation(4, lineColors ,secret).isGameOver})}, [submitted]);
 
   return (
 

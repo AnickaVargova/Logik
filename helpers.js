@@ -23,14 +23,27 @@ export const getCorrectPlacesCount = (selected, secret) =>
     0
   );
 
-export const getEvaluation = (placesCount, selected, secret) => {
-  return Array.from({ length: placesCount }).map((item, index) => {
+export const getEvaluation = (placesCount, selected, secret) => ({
+  evalArray: Array.from({ length: placesCount }).map((item, index) => {
     if (getCorrectPlacesCount(selected, secret) > index) {
       return "black";
-    };
+    }
     if (getCorrectColorsCount(selected, secret) > index) {
       return "grey";
-    };
+    }
     return "";
-  });
+  }),
+  isGameOver: getCorrectPlacesCount(selected, secret) === 4
+});
+
+export const areColorsUnique = (colors) => {
+  const colorsCopy = [];
+  for (let i of colors) {
+      if(!colorsCopy.includes(i)){
+          colorsCopy.push(i);
+      }
+      else{
+          return false;
+      }
+  }
 };
