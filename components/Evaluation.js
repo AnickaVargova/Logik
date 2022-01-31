@@ -7,14 +7,17 @@ export const Evaluation = () => {
   const context = useContext(GameContext);
   const submitted = context.gameData.submitted;
   const secret = context.gameData.secretOptions;
-  const current = context.gameData.current;
-  const [evalArray, setEvalArray] = useState(getEvaluation(4,current,secret));
-
-  useEffect(() => setEvalArray(getEvaluation(4,current,secret)), [submitted]);
+  const history = context.gameData.history;
+  const last = history.length ? history[history.length - 1].colors : ['', '', '', '']; 
+  
+  const [evalArray, setEvalArray] = useState(getEvaluation(4, last ,secret));
+  
+  useEffect(() => {setEvalArray(getEvaluation(4,last,secret))}, [submitted]);
 
   return (
 
     <View style={styles.line}>
+        
       {evalArray.map((color, index) => (
         <View
           style={styles.circle}

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Square } from "./Square";
 
 
-export const Squares = ({ dropdown, backgroundsArr, setCurrentLine }) => {
+export const Squares = ({ dropdown, backgroundsArr}) => {
 
   const squareLine = Array.from(backgroundsArr).map((background, index) => (
     <Square
