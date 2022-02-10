@@ -7,12 +7,12 @@ import { Evaluation } from "./Evaluation";
 export const History = () => {
   const context = useContext(GameContext);
   const history = context.gameData.history;
-  const submitted = context.gameData.submitted;
+  const submitId = context.gameData.submitId;
 
   const historyMap = history.map((item, index) => (
     <View key={index} index={index} style={styles.historyLine}>
       <Squares location={'history'} backgroundsArr={item.colors} />
-      <Evaluation lineIndex={index} key={submitted} />
+      <Evaluation lineIndex={index} key={submitId} />
     </View>
   ));
 

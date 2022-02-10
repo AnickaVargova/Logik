@@ -31,39 +31,31 @@ const Dropdown = ({ setVisible, squareIndex }) => {
   );
 };
 
-const withSquareFunctionality =
-  (Component) =>
-  ({ ...props }) =>
-    <Component {...props} />;
-
-const EmptyView = () => (
+const SecretSquare = () => (
   <View style={styles.menuButton}>
     <Text>?</Text>
   </View>
 );
 
-const HeaderSquare = withSquareFunctionality(View);
-const HistorySquare = withSquareFunctionality(View);
-const CurrentSquare = withSquareFunctionality(TouchableOpacity);
-const EmptySquare = withSquareFunctionality(EmptyView);
 
 const renderSquare = (props, location, currentBackground) =>
   location === "current" ? (
-    <CurrentSquare
+    <TouchableOpacity
       {...props}
       style={{ ...styles.menuButton, backgroundColor: currentBackground }}
     />
   ) : location === "header" ? (
     props.secretShown ? (
-      <HeaderSquare {...props} />
+      <View {...props} />
     ) : (
-      <EmptySquare
+      <SecretSquare
         {...props}
         style={{ ...styles.menuButton, backgroundColor: "white" }}
       />
     )
   ) : (
-    <HistorySquare {...props} />
+    //for history squares
+    <View {...props} />
   );
 
 export const Square = ({ defaultBackground, location, index }) => {

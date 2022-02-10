@@ -7,7 +7,7 @@ export const getDefaultData = () => ({
     history: [],
     current: ['','','',''],
     dropdowns: [false, false, false, false],
-    submitted: 1,
+    submitId: 1,
     gameOver: false,
     secretShown: false
   });

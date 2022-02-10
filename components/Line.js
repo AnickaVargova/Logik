@@ -43,10 +43,8 @@ export const Line = ({location }) => {
         return;
     }
 
-    setGameData((p) => ({ ...p, history: [...p.history, { colors: current }], current: ['','','',''], submitted: ++p.submitted }));
+    setGameData((p) => ({ ...p, history: [...p.history, { colors: current }], current: ['','','',''], submitId: ++p.submitId }));
   };
-
-  console.log(current);
 
   return (
     <View style={styles.line}>

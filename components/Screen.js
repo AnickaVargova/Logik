@@ -10,8 +10,9 @@ export const Screen = () => {
   const current = context.gameData.current;
   const setGameData = context.setGameData;
   const history = context.gameData.history;
-  const submitted = context.gameData.submitted;
+  const submitId = context.gameData.submitId;
   const gameOver = context.gameData.gameOver;
+  
   const renderHistory = () => {
     if (!history.length) return;
     return <History />;
@@ -27,7 +28,7 @@ export const Screen = () => {
         <Header />
         {renderHistory()}
         {!gameOver && (
-          <Line location={"current"} backgroundsArr={current} key={submitted} />
+          <Line location={"current"} backgroundsArr={current} key={submitId} />
         )}
         {gameOver && (
           <View style={styles.messageContainer}>
